@@ -1,6 +1,6 @@
 const Joi = require('joi');
 /**
- * @type {{createSchema: import('joi').ObjectSchema, byPlanSchema: import('joi').ObjectSchema}}
+ * @type {{create: import('joi').ObjectSchema, byPlan: import('joi').ObjectSchema}}
  */
 const schemas = {
   create: Joi.object({
