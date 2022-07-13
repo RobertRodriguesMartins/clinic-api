@@ -9,6 +9,14 @@ const surgeryGenerator = (sequelize) => {
     timestamps: false,
   });
 
+  surgery.associate = (models) => {
+    surgery.belongsToMany(models.patient, {
+      foreignKey: 'surgeryId',
+      as: 'patients',
+      through: models.patientSurgery,
+    });
+  };
+
   return surgery;
 };
 
