@@ -5,7 +5,8 @@ const patientService = require('../services');
  */
 const patientController = {
   findAll: async (req, res, next) => {
-    const data = await patientService.findAll();
+    const { q } = req.query;
+    const data = await patientService.findAll(q);
 
     return res.status(200).json(data);
   },
