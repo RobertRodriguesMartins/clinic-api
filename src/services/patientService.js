@@ -1,8 +1,5 @@
 const models = require('../models');
 const patientService = {
-  /**
-   * @type {Promise<Array>}
-   */
   findAll: async (options) => {
     const possibleOptions = ['surgeries', 'plans'];
     if (possibleOptions.includes(options)) {
@@ -12,6 +9,15 @@ const patientService = {
       return partialData;
     }
     const data = await models.patient.findAll();
+    return data;
+  },
+  findAllByPlanId: async (plan) => {
+    const data = await models.patient.findAll({
+      where: {
+        planId: plan,
+      },
+      include: [{ association: 'plans' }],
+    });
     return data;
   },
 };
