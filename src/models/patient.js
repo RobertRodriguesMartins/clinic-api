@@ -15,6 +15,12 @@ const patientGenerator = (sequelize) => {
       foreignKey: 'planId',
       as: 'plans',
     });
+
+    patient.belongsToMany(models.surgery, {
+      foreignKey: 'patientId',
+      as: 'surgeries',
+      through: models.patientSurgery,
+    });
   };
 
   return patient;
