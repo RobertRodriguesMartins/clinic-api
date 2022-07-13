@@ -13,6 +13,18 @@ const patientSurgeryGenerator = (sequelize) => {
     }
   );
 
+  patientSurgery.associate = (models) => {
+    patientSurgery.belongsTo(models.patient, {
+      foreignKey: 'patientId',
+      as: 'patient',
+    });
+
+    patientSurgery.belongsTo(models.surgery, {
+      foreignKey: 'surgeryId',
+      as: 'surgery',
+    });
+  };
+
   return patientSurgery;
 };
 
