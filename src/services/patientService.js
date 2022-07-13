@@ -20,6 +20,12 @@ const patientService = {
     });
     return data;
   },
+  create: async (patient) => {
+    const data = await models.patient.create(patient, {
+      raw: true,
+    });
+    return data;
+  },
 };
 
 module.exports = patientService;
