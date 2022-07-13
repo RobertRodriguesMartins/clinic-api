@@ -1,4 +1,5 @@
 const patientService = require('../services');
+const joiValidate = require('../utils');
 
 /**
  * @type {Record<string, import('express').RequestHandler}
@@ -11,7 +12,7 @@ const patientController = {
     return res.status(200).json(data);
   },
   findAllByPlanId: async (req, res, next) => {
-    const { planId } = req.params;
+    const planId = await joiValidate('byPlan', { ...req.params });
     const data = await patientService.findAllByPlanId(Number(planId));
 
     return res.status(200).json(data);
@@ -21,7 +22,7 @@ const patientController = {
      * @type {{fullName: string, planId: number}}
      *
      */
-    const patient = req.body;
+    const patient = await joiValidate('create', { ...req.body });
     const data = await patientService.create(patient);
 
     return res.status(200).json(data);
