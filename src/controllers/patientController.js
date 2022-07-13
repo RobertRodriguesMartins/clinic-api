@@ -2,7 +2,9 @@ const patientService = require('../services');
 const joiValidate = require('../utils');
 
 /**
- * @type {Record<string, import('express').RequestHandler}
+ * @type {{findAll: import('express').RequestHandler,
+ * findAllByPlanId: import('express').RequestHandler,
+ *  create: import('express').RequestHandler}}
  */
 const patientController = {
   findAll: async (req, res, next) => {
